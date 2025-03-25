@@ -126,9 +126,9 @@ export function getSidebarFromSchemas(
 }
 
 export function makeSidebarGroup(groupConfig: SidebarManualGroup): SidebarManualGroup {
-  const { label, items, collapsed = true, group, badge } = groupConfig
+  const { label, items, collapsed = true} = groupConfig
 
-  return { collapsed, items, label, group, badge }
+  return { collapsed, items, label}
 }
 
 export const chooseBadgeVariant = (method: string) => {
@@ -266,11 +266,6 @@ export interface SidebarManualGroup {
   collapsed?: boolean | undefined
   items: (SidebarLink | SidebarGroup)[]
   label: string
-  group?: symbol | undefined
-  badge?:
-    | string
-    | { text: string; variant?: 'note' | 'danger' | 'success' | 'caution' | 'tip' | 'default' | undefined }
-    | undefined
 }
 
 interface SidebarLink {
