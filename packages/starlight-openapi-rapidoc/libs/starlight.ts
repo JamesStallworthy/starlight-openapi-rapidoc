@@ -165,7 +165,7 @@ export function makeSidebarLinkFromPathOperation(
 
   return {
     label: title,
-    link: baseLink + slug,
+    link: baseLink + slug + `/${method}`,
     attrs: { class: `sord-operation-link method-${method}` },
     badge: showMethodBadgeSidebar
       ? {
