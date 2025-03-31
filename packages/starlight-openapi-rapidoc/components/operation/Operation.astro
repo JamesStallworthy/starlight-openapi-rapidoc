@@ -108,6 +108,33 @@ const slotName = `${pathItemOperation.method}-${
 
     await docEl?.loadSpec(schemaFiltred)
     window.console.debug('schema loaded', { schemaFiltred })
+
+    function setRapiDocTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const rapiDocTheme = (currentTheme === 'light' || currentTheme === 'default') ? 'light' : 'dark';
+
+      const rapiDocElement = document.querySelector('rapi-doc');
+      if (rapiDocElement) {
+        rapiDocElement.setAttribute('theme', rapiDocTheme);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setRapiDocTheme();
+
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === "attributes" && mutation.attributeName === "data-theme") {
+            setRapiDocTheme();
+          }
+        });
+      });
+
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+    });
   })
 </script>
 
